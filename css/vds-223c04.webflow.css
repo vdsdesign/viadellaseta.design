@@ -2899,3 +2899,62 @@ a:hover {
   font-style: normal;
   font-display: swap;
 }
+
+/* === Marquee animations for brand logos === */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.italian-logos-wrap-in._1,
+.italian-logos-wrap-in._2,
+.italian-logos-wrap-in._3 {
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.italian-logos-wrap-in._2 {
+  animation-direction: reverse;
+  animation-name: marquee-scroll-reverse;
+}
+
+.italian-logos-wrap-in._1:hover,
+.italian-logos-wrap-in._2:hover,
+.italian-logos-wrap-in._3:hover {
+  animation-play-state: paused;
+}
+
+/* === Hero image scroll animation === */
+@keyframes hero-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes hero-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.hero-img-wrap._1 {
+  animation: hero-scroll-left 30s linear infinite;
+  left: 0;
+}
+
+.hero-img-wrap._2 {
+  animation: hero-scroll-right 30s linear infinite;
+  right: 0;
+}
+
+/* === "Let's talk" marquee text === */
+@keyframes marquee-text {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.form-marquee-in {
+  animation: marquee-text 20s linear infinite;
+}

@@ -632,7 +632,7 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
           </div>
         </div>
       </div>
-      <div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="marquee-wrap">
+      <div class="marquee-wrap">
         <div class="form-marquee-in">
           <p class="form-marq-text">Let&#x27;s talk</p>
           <p class="form-marq-text">Let&#x27;s talk</p>
@@ -698,10 +698,10 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
                     <p class="_12-text">Phone number</p>
                   </div>
                   <div class="footer-links-wrap">
-                    <a href="mailto:info@viadellaseta.design" class="footer-link w-inline-block">
-                      <p>+41 XX XXX XX XX</p>
+                    <a href="tel:+41782084680" class="footer-link w-inline-block">
+                      <p>+41 78 208 46 80</p>
                     </a>
-                    <a href="mailto:info@viadellaseta.design" class="footer-link w-inline-block">
+                    <a href="https://wa.me/41782084680" target="_blank" class="footer-link w-inline-block">
                       <p>WhatsApp us</p>
                     </a>
                   </div>
@@ -741,7 +741,7 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
                   <p>Privacy policy</p>
                 </a>
               </div>
-              <p>© Via Della Seta<br>2023 — 2026</p>
+              <p>© Via Della Seta<br>2021 — 2026</p>
             </div>
           </div>
         </div>
@@ -777,6 +777,18 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
   });
 </script>
   <script>
+  // Duplicate hero images for infinite scroll
+  document.querySelectorAll('.hero-img-wrap').forEach(wrap => {
+    const clone = wrap.innerHTML;
+    wrap.innerHTML = clone + clone;
+  });
+
+  // Duplicate logo rows for infinite scroll
+  document.querySelectorAll('.italian-logos-wrap-in._1, .italian-logos-wrap-in._2, .italian-logos-wrap-in._3').forEach(wrap => {
+    // Already duplicated in HTML structure, just ensure animation works
+  });
+</script>
+<script>
   // Hover animation with GSAP
   let mm = gsap.matchMedia();
   mm.add("(hover: hover) and (pointer: fine)", () => {
