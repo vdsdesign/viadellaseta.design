@@ -2901,31 +2901,29 @@ a:hover {
 }
 
 /* === Marquee animations for brand logos === */
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marquee-scroll-reverse {
+@keyframes marquee-scroll-right {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
 
-.italian-logos-wrap-in._1,
-.italian-logos-wrap-in._2,
-.italian-logos-wrap-in._3 {
-  animation: marquee-scroll 25s linear infinite;
+@keyframes marquee-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
+/* Row 1: right to left */
+.italian-logos-wrap-in._1 {
+  animation: marquee-scroll-left 35s linear infinite;
+}
+
+/* Row 2: left to right (opposite) */
 .italian-logos-wrap-in._2 {
-  animation-direction: reverse;
-  animation-name: marquee-scroll-reverse;
+  animation: marquee-scroll-right 35s linear infinite;
 }
 
-.italian-logos-wrap-in._1:hover,
-.italian-logos-wrap-in._2:hover,
-.italian-logos-wrap-in._3:hover {
-  animation-play-state: paused;
+/* Row 3: right to left (same as row 1) */
+.italian-logos-wrap-in._3 {
+  animation: marquee-scroll-left 35s linear infinite;
 }
 
 /* === Hero image scroll animation === */
@@ -2956,5 +2954,10 @@ a:hover {
 }
 
 .form-marquee-in {
-  animation: marquee-text 20s linear infinite;
+  animation: marquee-text 120s linear infinite;
+}
+
+/* === Process cards base for parallax === */
+.process-card {
+  will-change: transform;
 }

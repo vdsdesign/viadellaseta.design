@@ -603,29 +603,29 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
       <div class="h2-wrap big">
         <h2 class="text-brown">Let’s talk</h2>
         <div class="form-block w-form">
-          <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-wrap" data-wf-page-id="699eb996ab06aa49bee67119" data-wf-element-id="1b38c209-12fd-b4af-dff5-28c1be470fa7">
+          <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form-wrap">
             <div class="form-head">
               <h3 class="text-60">Request a quote or Partnership</h3>
             </div>
-            <div class="w-layout-grid grid-2"><input class="form-field w-node-_1b38c209-12fd-b4af-dff5-28c1be470fb1-bee67119 w-input" maxlength="256" name="Email" data-name="Email" placeholder="Name*" type="text" id="Email" required=""><input class="form-field w-node-b4b1fdf6-055f-65fe-2a97-d0988fc1f10d-bee67119 w-input" maxlength="256" name="Email" data-name="Email" placeholder="Company / Studio" type="text" id="Email" required=""><select id="Role" name="Role" data-name="Role" required="" class="form-field w-node-e1a6493d-fbd0-3b7d-753e-fb841ab0a6fc-bee67119 w-select">
+            <div class="w-layout-grid grid-2"><input class="form-field w-node-_1b38c209-12fd-b4af-dff5-28c1be470fb1-bee67119 w-input" maxlength="256" name="Name" placeholder="Name*" type="text" id="field-name" required=""><input class="form-field w-node-b4b1fdf6-055f-65fe-2a97-d0988fc1f10d-bee67119 w-input" maxlength="256" name="Company" placeholder="Company / Studio" type="text" id="field-company"><select id="Role" name="Role" required="" class="form-field w-node-e1a6493d-fbd0-3b7d-753e-fb841ab0a6fc-bee67119 w-select">
                 <option value="">Your role*</option>
-                <option value="First">Designer </option>
-                <option value="Second">Architect</option>
-                <option value="Third">Developer</option>
-                <option value="Another option">Hospitality</option>
-                <option value="Another option">Other</option>
-              </select><input class="form-field w-node-df52818f-f176-6554-7952-64d85ae39ad1-bee67119 w-input" maxlength="256" name="Email" data-name="Email" placeholder="Work email*" type="email" id="Email" required=""><input class="form-field w-node-_712bd7a9-3e60-d0d0-cc2a-65743bb88c62-bee67119 w-input" maxlength="256" name="Email" data-name="Email" placeholder="Country / Project location" type="text" id="Email" required=""><select id="What-do-you-need" name="What-do-you-need" data-name="What do you need?" class="form-field w-node-_164ce216-08f3-e7c5-76e4-9103e4caf25e-bee67119 w-select">
+                <option value="Designer">Designer</option>
+                <option value="Architect">Architect</option>
+                <option value="Developer">Developer</option>
+                <option value="Hospitality">Hospitality</option>
+                <option value="Other">Other</option>
+              </select><input class="form-field w-node-df52818f-f176-6554-7952-64d85ae39ad1-bee67119 w-input" maxlength="256" name="Email" placeholder="Work email*" type="email" id="field-email" required=""><input class="form-field w-node-_712bd7a9-3e60-d0d0-cc2a-65743bb88c62-bee67119 w-input" maxlength="256" name="Location" placeholder="Country / Project location" type="text" id="field-location"><select id="What-do-you-need" name="Service" class="form-field w-node-_164ce216-08f3-e7c5-76e4-9103e4caf25e-bee67119 w-select">
                 <option value="">What do you need?</option>
-                <option value="First">FF&amp;E</option>
-                <option value="Second">Kitchens</option>
-                <option value="Third">Lighting</option>
-                <option value="Another option">Outdoor</option>
-                <option value="Another option">Smart home</option>
-                <option value="Another option">Full package</option>
-              </select><input class="form-field w-node-_1b38c209-12fd-b4af-dff5-28c1be470fb3-bee67119 w-input" maxlength="256" name="Store-URL" data-name="Store URL" pattern="^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$" placeholder="Message" data-url-field="true" type="text" id="Store-URL" required=""><input type="submit" data-wait="Please wait..." id="w-node-_1b38c209-12fd-b4af-dff5-28c1be470fc6-bee67119" class="button-2 fill w-button" value="Discuss partnership"></div>
+                <option value="FF&amp;E">FF&amp;E</option>
+                <option value="Kitchens">Kitchens</option>
+                <option value="Lighting">Lighting</option>
+                <option value="Outdoor">Outdoor</option>
+                <option value="Smart home">Smart home</option>
+                <option value="Full package">Full package</option>
+              </select><input class="form-field w-node-_1b38c209-12fd-b4af-dff5-28c1be470fb3-bee67119 w-input" maxlength="256" name="Message" placeholder="Message" type="text" id="field-message"><input type="submit" data-wait="Please wait..." id="w-node-_1b38c209-12fd-b4af-dff5-28c1be470fc6-bee67119" class="button-2 fill w-button" value="Discuss partnership"></div>
           </form>
           <div class="thank-u w-form-done">
-            <div>Thank you! Your submission has been received!</div>
+            <div>Your message has been sent. We will get back to you shortly.</div>
           </div>
           <div class="error w-form-fail">
             <div>Oops! Something went wrong while submitting the form.</div>
@@ -783,10 +783,100 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
     wrap.innerHTML = clone + clone;
   });
 
-  // Duplicate logo rows for infinite scroll
-  document.querySelectorAll('.italian-logos-wrap-in._1, .italian-logos-wrap-in._2, .italian-logos-wrap-in._3').forEach(wrap => {
-    // Already duplicated in HTML structure, just ensure animation works
+  // === Project cards: switch active card based on scroll position ===
+  gsap.registerPlugin(ScrollTrigger);
+
+  const projectCards = document.querySelectorAll('.project-card');
+  const projectBgImgs = document.querySelectorAll('.project-bg-img-2');
+
+  if (projectCards.length && projectBgImgs.length) {
+    // Show first card initially
+    projectCards.forEach((card, i) => {
+      if (i === 0) {
+        gsap.set(card, { opacity: 1, display: 'flex' });
+      } else {
+        gsap.set(card, { opacity: 0, display: 'none' });
+      }
+    });
+
+    projectBgImgs.forEach((img, i) => {
+      ScrollTrigger.create({
+        trigger: img,
+        start: "top 60%",
+        end: "bottom 40%",
+        onEnter: () => switchCard(i),
+        onEnterBack: () => switchCard(i),
+      });
+    });
+
+    function switchCard(index) {
+      projectCards.forEach((card, i) => {
+        if (i === index) {
+          gsap.to(card, { opacity: 1, duration: 0.4, display: 'flex' });
+        } else {
+          gsap.to(card, { opacity: 0, duration: 0.3, display: 'none' });
+        }
+      });
+    }
+  }
+
+  // === Parallax on process cards (scroll movement) ===
+  document.querySelectorAll('.process-card').forEach(card => {
+    gsap.to(card, {
+      y: -40,
+      ease: "none",
+      scrollTrigger: {
+        trigger: card,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
   });
+
+  // === Background images parallax ===
+  projectBgImgs.forEach(img => {
+    gsap.to(img, {
+      y: -60,
+      ease: "none",
+      scrollTrigger: {
+        trigger: img,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
+  });
+
+  // === Contact form handler ===
+  const form = document.getElementById('email-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => { data[key] = value; });
+
+      fetch('https://formsubmit.co/ajax/furniture@viadellaseta.design', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        form.style.display = 'none';
+        const done = document.querySelector('.w-form-done');
+        if (done) {
+          done.style.display = 'block';
+          done.querySelector('div').textContent = 'Your message has been sent. We will get back to you shortly.';
+        }
+      })
+      .catch(error => {
+        const fail = document.querySelector('.w-form-fail');
+        if (fail) fail.style.display = 'block';
+      });
+    });
+  }
 </script>
 <script>
   // Hover animation with GSAP
