@@ -755,131 +755,157 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="text/javascript">!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".clients_wrap").forEach((element) => {
-      if (element.dataset.scriptInitialized) return;
-      element.dataset.scriptInitialized = "true";
-      $(".client_list_wrap").each(function (index) {
-        let line = $(this).find(".client_item .line_full_wrap");
-        let content = $(this).find(".client_item .client_content");
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: $(this),
-            start: "top bottom",
-            end: "top 70%",
-            toggleActions: "none play none reset"
-          }
-        });
-        tl.from(line, { scaleX: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" });
-        tl.from(content, { opacity: 0, yPercent: 20, stagger: 0.1, duration: 0.5, ease: "none" }, 0);
-      });
-    });
-  });
-</script>
-  <script>
-  // Duplicate hero images for infinite scroll
-  document.querySelectorAll('.hero-img-wrap').forEach(wrap => {
-    const clone = wrap.innerHTML;
-    wrap.innerHTML = clone + clone;
-  });
-
-  // === Project cards: switch active card based on scroll position ===
   gsap.registerPlugin(ScrollTrigger);
 
-  const projectCards = document.querySelectorAll('.project-card');
-  const projectBgImgs = document.querySelectorAll('.project-bg-img-2');
+  // 1. HERO IMAGES — Horizontal spread on scroll
+  const heroBlock = document.querySelector('.hero-img-block');
+  if (heroBlock) {
+    gsap.to('.hero-img-wrap._1', {
+      x: '15em', ease: 'none',
+      scrollTrigger: { trigger: heroBlock, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+    gsap.to('.hero-img-wrap._2', {
+      x: '-15em', ease: 'none',
+      scrollTrigger: { trigger: heroBlock, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  }
 
-  if (projectCards.length && projectBgImgs.length) {
-    // Show first card initially
-    projectCards.forEach((card, i) => {
-      if (i === 0) {
-        gsap.set(card, { opacity: 1, display: 'flex' });
-      } else {
-        gsap.set(card, { opacity: 0, display: 'none' });
+  // 2. NEED IMAGES — Parallax + zoom
+  document.querySelectorAll('.need-img').forEach(img => {
+    gsap.fromTo(img,
+      { y: '-1em', scale: 1.1 },
+      { y: '2em', scale: 1.15, ease: 'none',
+        scrollTrigger: { trigger: img.closest('.need') || img, start: 'top bottom', end: 'bottom top', scrub: true }
+      }
+    );
+  });
+
+  // 3. 4PROFESSIONALS — Circular image parallax
+  document.querySelectorAll('._4professionals-img').forEach(img => {
+    gsap.fromTo(img,
+      { y: '-0.75em', scale: 1.2 },
+      { y: '0.75em', scale: 1.2, ease: 'none',
+        scrollTrigger: { trigger: img.closest('._4professionals-info-wrap') || img, start: 'top bottom', end: 'bottom top', scrub: true }
+      }
+    );
+  });
+
+  // 4. PROCESS CARDS — Fan-out with rotation on scroll
+  const processWrap = document.querySelector('.process-cards-wrap');
+  if (processWrap) {
+    const cards = processWrap.querySelectorAll('.process-card');
+    const anims = [
+      { rFrom: -6, rTo: -12, yFrom: 0, yTo: 0 },
+      { rFrom: 6, rTo: 12, yFrom: 0, yTo: -80 },
+      { rFrom: -1, rTo: -5, yFrom: -80, yTo: -240 },
+      { rFrom: 6, rTo: 12, yFrom: 0, yTo: -320 },
+      { rFrom: 0, rTo: -9, yFrom: 0, yTo: -560 },
+      { rFrom: 11, rTo: 18, yFrom: 0, yTo: -480 },
+    ];
+    cards.forEach((card, i) => {
+      if (anims[i]) {
+        gsap.fromTo(card,
+          { rotation: anims[i].rFrom, y: anims[i].yFrom },
+          { rotation: anims[i].rTo, y: anims[i].yTo, ease: 'none',
+            scrollTrigger: { trigger: processWrap, start: 'top bottom', end: 'bottom top', scrub: true }
+          }
+        );
       }
     });
-
-    projectBgImgs.forEach((img, i) => {
-      ScrollTrigger.create({
-        trigger: img,
-        start: "top 60%",
-        end: "bottom 40%",
-        onEnter: () => switchCard(i),
-        onEnterBack: () => switchCard(i),
-      });
-    });
-
-    function switchCard(index) {
-      projectCards.forEach((card, i) => {
-        if (i === index) {
-          gsap.to(card, { opacity: 1, duration: 0.4, display: 'flex' });
-        } else {
-          gsap.to(card, { opacity: 0, duration: 0.3, display: 'none' });
-        }
+    const processText = document.querySelector('.process-text-behind');
+    if (processText) {
+      gsap.fromTo(processText, { opacity: 1 }, { opacity: 0, ease: 'none',
+        scrollTrigger: { trigger: processWrap, start: '70% bottom', end: '86% bottom', scrub: true }
       });
     }
   }
 
-  // === Parallax on process cards (scroll movement) ===
-  document.querySelectorAll('.process-card').forEach(card => {
-    gsap.to(card, {
-      y: -40,
-      ease: "none",
-      scrollTrigger: {
-        trigger: card,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-      }
-    });
+  // 5. SMART HOME ORNAMENTS — Continuous rotation
+  document.querySelectorAll('.smart-ornament').forEach(orn => {
+    gsap.to(orn, { rotation: 360, duration: 60, ease: 'none', repeat: -1 });
   });
 
-  // === Background images parallax ===
-  projectBgImgs.forEach(img => {
-    gsap.to(img, {
-      y: -60,
-      ease: "none",
-      scrollTrigger: {
-        trigger: img,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-      }
+  // 6. BRAND LOGOS — Scroll-driven horizontal shift
+  const italianSection = document.querySelector('.section.italian');
+  if (italianSection) {
+    gsap.fromTo('.italian-logos-wrap-in._1', { xPercent: -100 }, { xPercent: -30, ease: 'none',
+      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
     });
-  });
-
-  // === Contact form handler ===
-  const form = document.getElementById('email-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach((value, key) => { data[key] = value; });
-
-      fetch('https://formsubmit.co/ajax/furniture@viadellaseta.design', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(result => {
-        form.style.display = 'none';
-        const done = document.querySelector('.w-form-done');
-        if (done) {
-          done.style.display = 'block';
-          done.querySelector('div').textContent = 'Your message has been sent. We will get back to you shortly.';
-        }
-      })
-      .catch(error => {
-        const fail = document.querySelector('.w-form-fail');
-        if (fail) fail.style.display = 'block';
-      });
+    gsap.fromTo('.italian-logos-wrap-in._2', { xPercent: 0 }, { xPercent: -60, ease: 'none',
+      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+    gsap.fromTo('.italian-logos-wrap-in._3', { xPercent: -100 }, { xPercent: 0, ease: 'none',
+      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
     });
   }
-</script>
-<script>
-  // Hover animation with GSAP
+
+  // 7. PROJECT CARDS — Scroll-driven opacity crossfade
+  const projectSection = document.querySelector('#projects');
+  const projectCards = document.querySelectorAll('.project-card');
+  if (projectSection && projectCards.length >= 3) {
+    gsap.set(projectCards, { opacity: 0 });
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: projectSection, start: 'top top', end: 'bottom bottom', scrub: true }
+    });
+    // Card 1: 6-10% fade in, 10-17% visible, 17-21% fade out
+    tl.fromTo(projectCards[0], { opacity: 0 }, { opacity: 1 }, 0.06);
+    tl.to(projectCards[0], { opacity: 1, duration: 0.07 }, 0.10);
+    tl.to(projectCards[0], { opacity: 0, duration: 0.04 }, 0.17);
+    // Card 2: 30-34% fade in, 34-48% visible, 48-52% fade out
+    tl.fromTo(projectCards[1], { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.30);
+    tl.to(projectCards[1], { opacity: 1, duration: 0.14 }, 0.34);
+    tl.to(projectCards[1], { opacity: 0, duration: 0.04 }, 0.48);
+    // Card 3: 62-68% fade in, 68-79% visible, 79-83% fade out
+    tl.fromTo(projectCards[2], { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0.62);
+    tl.to(projectCards[2], { opacity: 1, duration: 0.11 }, 0.68);
+    tl.to(projectCards[2], { opacity: 0, duration: 0.04 }, 0.79);
+  }
+
+  // 8. "LET'S TALK" MARQUEE — Infinite loop behind form
+  const marqueeWrap = document.querySelector('.marquee-wrap');
+  if (marqueeWrap) {
+    function runMarquee() {
+      gsap.fromTo(marqueeWrap,
+        { xPercent: -100 },
+        { xPercent: 232.75, duration: 60, ease: 'none', onComplete: runMarquee }
+      );
+    }
+    runMarquee();
+  }
+
+  // 9. FAQ ACCORDION
+  document.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const item = this.closest('.client_item');
+      const panel = item.querySelector('.faq-accordion-panel');
+      const icon = item.querySelector('.svg-nfaq');
+      const isOpen = panel.style.height && panel.style.height !== '0px';
+      if (isOpen) {
+        gsap.to(panel, { height: 0, duration: 0.2, ease: 'power2.out' });
+        gsap.to(icon, { rotation: 0, duration: 0.2 });
+      } else {
+        gsap.set(panel, { height: 'auto' });
+        const h = panel.offsetHeight;
+        gsap.fromTo(panel, { height: 0 }, { height: h, duration: 0.2, ease: 'power2.out' });
+        gsap.to(icon, { rotation: 180, duration: 0.2 });
+      }
+    });
+  });
+
+  // 10. FAQ SCROLL REVEAL
+  document.addEventListener("DOMContentLoaded", function () {
+    $(".client_list_wrap").each(function () {
+      let line = $(this).find(".client_item .line_full_wrap");
+      let content = $(this).find(".client_item .client_content");
+      let tl = gsap.timeline({
+        scrollTrigger: { trigger: $(this), start: "top bottom", end: "top 70%", toggleActions: "none play none reset" }
+      });
+      tl.from(line, { scaleX: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" });
+      tl.from(content, { opacity: 0, yPercent: 20, stagger: 0.1, duration: 0.5, ease: "none" }, 0);
+    });
+  });
+
+  // 11. FAQ HOVER
   let mm = gsap.matchMedia();
   mm.add("(hover: hover) and (pointer: fine)", () => {
     document.querySelectorAll("[data-hover-item]").forEach(item => {
@@ -887,42 +913,49 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
       const content = item.querySelector("[data-hover-content]");
       item.addEventListener("mouseenter", e => {
         const bounds = item.getBoundingClientRect();
-        const midY = bounds.top + bounds.height / 2;
-        const origin = e.clientY > midY ? "bottom" : "top";
+        const origin = e.clientY > bounds.top + bounds.height / 2 ? "bottom" : "top";
         gsap.set(bg, { transformOrigin: origin });
-        gsap.to(bg, {
-          scaleY: 1,
-          duration: 0.4,
-          ease: "power2.out"
-        });
+        gsap.to(bg, { scaleY: 1, duration: 0.4, ease: "power2.out" });
         content.classList.add("is-active");
-        gsap.to(content, {
-          paddingLeft: "0rem",
-          paddingRight: "0rem",
-          duration: 0.4,
-          ease: "power2.out"
-        });
       });
       item.addEventListener("mouseleave", e => {
         const bounds = item.getBoundingClientRect();
-        const midY = bounds.top + bounds.height / 2;
-        const origin = e.clientY > midY ? "bottom" : "top";
+        const origin = e.clientY > bounds.top + bounds.height / 2 ? "bottom" : "top";
         gsap.set(bg, { transformOrigin: origin });
-        gsap.to(bg, {
-          scaleY: 0,
-          duration: 0.4,
-          ease: "power2.in"
-        });
+        gsap.to(bg, { scaleY: 0, duration: 0.4, ease: "power2.in" });
         content.classList.remove("is-active");
-        gsap.to(content, {
-          paddingLeft: "0rem",
-          paddingRight: "0rem",
-          duration: 0.4,
-          ease: "power2.in"
-        });
       });
     });
   });
+
+  // 12. CONTACT FORM
+  const form = document.getElementById('email-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      if (btn) btn.value = 'Please wait...';
+      const data = {};
+      new FormData(form).forEach((v, k) => { data[k] = v; });
+      fetch('https://formsubmit.co/ajax/furniture@viadellaseta.design', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(r => r.json())
+      .then(() => {
+        form.style.display = 'none';
+        const done = document.querySelector('.w-form-done');
+        if (done) done.style.display = 'block';
+      })
+      .catch(() => {
+        if (btn) btn.value = 'Discuss partnership';
+        const fail = document.querySelector('.w-form-fail');
+        if (fail) fail.style.display = 'block';
+      });
+    });
+  }
 </script>
+
 </body>
 </html>
