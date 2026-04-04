@@ -291,14 +291,14 @@ Floor plan showing a master bedroom with wardrobe and bathroom, a guest bedroom 
             <div class="form-head">
               <h3 class="text-60">Request a quote or Partnership</h3>
             </div>
-            <div class="w-layout-grid grid-2"><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff4-ba55e9ef w-input" maxlength="256" name="Name" data-name="Name" placeholder="Name*" type="text" id="field-name" required=""><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff5-ba55e9ef w-input" maxlength="256" name="Company" data-name="Company" placeholder="Company / Studio" type="text" id="field-company"><select id="Role" name="Role" data-name="Role" required="" class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff6-ba55e9ef w-select">
+            <div class="w-layout-grid grid-2"><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff4-ba55e9ef w-input" maxlength="256" name="Name" data-name="Name" placeholder="Name*" type="text" id="field-name" required=""><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff5-ba55e9ef w-input" maxlength="256" name="Company" data-name="Company" placeholder="Company / Studio" type="text" id="field-company" required=""><select id="Role" name="Role" data-name="Role" required="" class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff6-ba55e9ef w-select">
                 <option value="">Your role*</option>
                 <option value="Designer">Designer</option>
                 <option value="Architect">Architect</option>
                 <option value="Developer">Developer</option>
                 <option value="Hospitality">Hospitality</option>
                 <option value="Other">Other</option>
-              </select><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff7-ba55e9ef w-input" maxlength="256" name="Email" data-name="Email" placeholder="Work email*" type="email" id="field-email" required=""><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff8-ba55e9ef w-input" maxlength="256" name="Location" data-name="Location" placeholder="Country / Project location" type="text" id="field-location"><select id="What-do-you-need" name="Service" data-name="What do you need?" class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff9-ba55e9ef w-select">
+              </select><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff7-ba55e9ef w-input" maxlength="256" name="Email" data-name="Email" placeholder="Work email*" type="email" id="field-email" required=""><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff8-ba55e9ef w-input" maxlength="256" name="Location" data-name="Location" placeholder="Country / Project location" type="text" id="field-location" required=""><select id="What-do-you-need" name="Service" data-name="What do you need?" class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ff9-ba55e9ef w-select">
                 <option value="">What do you need?</option>
                 <option value="FF&amp;E">FF&amp;E</option>
                 <option value="Kitchens">Kitchens</option>
@@ -306,7 +306,7 @@ Floor plan showing a master bedroom with wardrobe and bathroom, a guest bedroom 
                 <option value="Outdoor">Outdoor</option>
                 <option value="Smart home">Smart home</option>
                 <option value="Full package">Full package</option>
-              </select><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ffa-ba55e9ef w-input" maxlength="256" name="Message" data-name="Message" placeholder="Message" type="text" id="field-message"><input type="submit" data-wait="Please wait..." id="w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ffb-ba55e9ef" class="button-2 fill w-button" value="Discuss partnership"></div>
+              </select><input class="form-field w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ffa-ba55e9ef w-input" maxlength="256" name="Message" data-name="Message" placeholder="Message" type="text" id="field-message" required=""><input type="submit" data-wait="Please wait..." id="w-node-_54bd08a1-a3af-f5c4-daed-f98aa47c2ffb-ba55e9ef" class="button-2 fill w-button" value="Discuss partnership"></div>
           </form>
           <div class="thank-u w-form-done">
             <div>Your message has been sent. We will get back to you shortly.</div>
@@ -436,8 +436,12 @@ Floor plan showing a master bedroom with wardrobe and bathroom, a guest bedroom 
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
   (function() {
+    // Contact form - sends to FormSubmit.co
+    // Disable Webflow's form handler by removing its data attributes
     var form = document.getElementById('email-form');
     if (!form) return;
+    form.removeAttribute('data-wf-page-id');
+    form.removeAttribute('data-wf-element-id');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       e.stopImmediatePropagation();
