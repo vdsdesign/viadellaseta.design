@@ -2917,8 +2917,4 @@ a:hover {
   overflow: hidden;
 }
 
-/* Ensure form section clips marquee */
-.section.form {
-  overflow: hidden;
-  position: relative;
-}
+/* overflow/position already set in main .section.form rule */
