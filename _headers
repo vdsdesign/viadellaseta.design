@@ -3,4 +3,4 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://d3e54v103j8qbb.cloudfront.net https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://cdn.prod.website-files.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formsubmit.co https://unicornstudio.io
