@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --serve"
+    "build": "echo 'Static site, no build needed'",
+    "dev": "npx serve ."
   },
   "keywords": [],
   "author": "",
