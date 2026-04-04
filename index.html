@@ -1,5 +1,5 @@
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Fri Mar 20 2026 16:53:44 GMT+0000 (Coordinated Universal Time)  -->
-<html data-wf-page="699eb996ab06aa49bee67119" data-wf-site="699eb994ab06aa49bee670d6">
+<html data-wf-domain="vds-223c04.webflow.io" data-wf-page="699eb996ab06aa49bee67119" data-wf-site="699eb994ab06aa49bee670d6" data-wf-status="1">
 <head>
   <meta charset="utf-8">
   <title>Via della Seta — services for designers and architects.</title>
@@ -632,7 +632,7 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
           </div>
         </div>
       </div>
-      <div class="marquee-wrap">
+      <div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="marquee-wrap">
         <div class="form-marquee-in">
           <p class="form-marq-text">Let&#x27;s talk</p>
           <p class="form-marq-text">Let&#x27;s talk</p>
@@ -749,7 +749,9 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
     </section>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=699eb994ab06aa49bee670d6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="js/webflow.js" type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/699eb994ab06aa49bee670d6/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript" integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G" crossorigin="anonymous"></script>
+  <script src="https://cdn.prod.website-files.com/699eb994ab06aa49bee670d6/js/webflow.schunk.8eeda44248d8f4d5.js" type="text/javascript" integrity="sha384-GMFbf618jmhtoLHxZPofXMy3bXscJevzsqWNJFs/ly3f/0HQexcjJYuZbRitt/i1" crossorigin="anonymous"></script>
+  <script src="https://cdn.prod.website-files.com/699eb994ab06aa49bee670d6/js/webflow.e2aba027.b4dc3d9b9d0d338a.js" type="text/javascript" integrity="sha384-PXz7JjveIPmb0OKgMgC2c+EeNklDGmvn1T1bT9PCrLjQeOirMz6+uIaOTSl+YTPN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -757,178 +759,61 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
   <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1. HERO IMAGES — Horizontal spread on scroll
-  const heroBlock = document.querySelector('.hero-img-block');
-  if (heroBlock) {
-    gsap.to('.hero-img-wrap._1', {
-      x: '15em', ease: 'none',
-      scrollTrigger: { trigger: heroBlock, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-    gsap.to('.hero-img-wrap._2', {
-      x: '-15em', ease: 'none',
-      scrollTrigger: { trigger: heroBlock, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-  }
-
-  // 2. NEED IMAGES — Parallax + zoom
-  document.querySelectorAll('.need-img').forEach(img => {
-    gsap.fromTo(img,
-      { y: '-1em', scale: 1.1 },
-      { y: '2em', scale: 1.15, ease: 'none',
-        scrollTrigger: { trigger: img.closest('.need') || img, start: 'top bottom', end: 'bottom top', scrub: true }
-      }
-    );
-  });
-
-  // 3. 4PROFESSIONALS — Circular image parallax
-  document.querySelectorAll('._4professionals-img').forEach(img => {
-    gsap.fromTo(img,
-      { y: '-0.75em', scale: 1.2 },
-      { y: '0.75em', scale: 1.2, ease: 'none',
-        scrollTrigger: { trigger: img.closest('._4professionals-info-wrap') || img, start: 'top bottom', end: 'bottom top', scrub: true }
-      }
-    );
-  });
-
-  // 4. PROCESS CARDS — Fan-out with rotation on scroll
-  const processWrap = document.querySelector('.process-cards-wrap');
-  if (processWrap) {
-    const cards = processWrap.querySelectorAll('.process-card');
-    const anims = [
-      { rFrom: -6, rTo: -12, yFrom: 0, yTo: 0 },
-      { rFrom: 6, rTo: 12, yFrom: 0, yTo: -80 },
-      { rFrom: -1, rTo: -5, yFrom: -80, yTo: -240 },
-      { rFrom: 6, rTo: 12, yFrom: 0, yTo: -320 },
-      { rFrom: 0, rTo: -9, yFrom: 0, yTo: -560 },
-      { rFrom: 11, rTo: 18, yFrom: 0, yTo: -480 },
-    ];
-    cards.forEach((card, i) => {
-      if (anims[i]) {
-        gsap.fromTo(card,
-          { rotation: anims[i].rFrom, y: anims[i].yFrom },
-          { rotation: anims[i].rTo, y: anims[i].yTo, ease: 'none',
-            scrollTrigger: { trigger: processWrap, start: 'top bottom', end: 'bottom top', scrub: true }
-          }
-        );
-      }
-    });
-    const processText = document.querySelector('.process-text-behind');
-    if (processText) {
-      gsap.fromTo(processText, { opacity: 1 }, { opacity: 0, ease: 'none',
-        scrollTrigger: { trigger: processWrap, start: '70% bottom', end: '86% bottom', scrub: true }
-      });
-    }
-  }
-
-  // 5. SMART HOME ORNAMENTS — Continuous rotation
-  document.querySelectorAll('.smart-ornament').forEach(orn => {
-    gsap.to(orn, { rotation: 360, duration: 60, ease: 'none', repeat: -1 });
-  });
-
-  // 6. BRAND LOGOS — Scroll-driven horizontal shift
-  const italianSection = document.querySelector('.section.italian');
-  if (italianSection) {
-    gsap.fromTo('.italian-logos-wrap-in._1', { xPercent: -100 }, { xPercent: -30, ease: 'none',
-      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-    gsap.fromTo('.italian-logos-wrap-in._2', { xPercent: 0 }, { xPercent: -60, ease: 'none',
-      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-    gsap.fromTo('.italian-logos-wrap-in._3', { xPercent: -100 }, { xPercent: 0, ease: 'none',
-      scrollTrigger: { trigger: italianSection, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-  }
-
-  // 7. PROJECT CARDS — Scroll-driven opacity crossfade
-  const projectSection = document.querySelector('#projects');
-  const projectCards = document.querySelectorAll('.project-card');
-  if (projectSection && projectCards.length >= 3) {
-    gsap.set(projectCards, { opacity: 0 });
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: projectSection, start: 'top top', end: 'bottom bottom', scrub: true }
-    });
-    // Card 1: 6-10% fade in, 10-17% visible, 17-21% fade out
-    tl.fromTo(projectCards[0], { opacity: 0 }, { opacity: 1 }, 0.06);
-    tl.to(projectCards[0], { opacity: 1, duration: 0.07 }, 0.10);
-    tl.to(projectCards[0], { opacity: 0, duration: 0.04 }, 0.17);
-    // Card 2: 30-34% fade in, 34-48% visible, 48-52% fade out
-    tl.fromTo(projectCards[1], { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.30);
-    tl.to(projectCards[1], { opacity: 1, duration: 0.14 }, 0.34);
-    tl.to(projectCards[1], { opacity: 0, duration: 0.04 }, 0.48);
-    // Card 3: 62-68% fade in, 68-79% visible, 79-83% fade out
-    tl.fromTo(projectCards[2], { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0.62);
-    tl.to(projectCards[2], { opacity: 1, duration: 0.11 }, 0.68);
-    tl.to(projectCards[2], { opacity: 0, duration: 0.04 }, 0.79);
-  }
-
-  // 8. "LET'S TALK" MARQUEE — Infinite loop behind form
-  const marqueeWrap = document.querySelector('.marquee-wrap');
-  if (marqueeWrap) {
-    function runMarquee() {
-      gsap.fromTo(marqueeWrap,
-        { xPercent: -100 },
-        { xPercent: 232.75, duration: 60, ease: 'none', onComplete: runMarquee }
-      );
-    }
-    runMarquee();
-  }
-
-  // 9. FAQ ACCORDION
-  document.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
-    trigger.addEventListener('click', function() {
-      const item = this.closest('.client_item');
-      const panel = item.querySelector('.faq-accordion-panel');
-      const icon = item.querySelector('.svg-nfaq');
-      const isOpen = panel.style.height && panel.style.height !== '0px';
-      if (isOpen) {
-        gsap.to(panel, { height: 0, duration: 0.2, ease: 'power2.out' });
-        gsap.to(icon, { rotation: 0, duration: 0.2 });
-      } else {
-        gsap.set(panel, { height: 'auto' });
-        const h = panel.offsetHeight;
-        gsap.fromTo(panel, { height: 0 }, { height: h, duration: 0.2, ease: 'power2.out' });
-        gsap.to(icon, { rotation: 180, duration: 0.2 });
-      }
-    });
-  });
-
-  // 10. FAQ SCROLL REVEAL
+  // FAQ SCROLL REVEAL (from Webflow original)
   document.addEventListener("DOMContentLoaded", function () {
-    $(".client_list_wrap").each(function () {
-      let line = $(this).find(".client_item .line_full_wrap");
-      let content = $(this).find(".client_item .client_content");
-      let tl = gsap.timeline({
-        scrollTrigger: { trigger: $(this), start: "top bottom", end: "top 70%", toggleActions: "none play none reset" }
+    document.querySelectorAll(".clients_wrap").forEach((element) => {
+      if (element.dataset.scriptInitialized) return;
+      element.dataset.scriptInitialized = "true";
+
+      $(".client_list_wrap").each(function (index) {
+        let line = $(this).find(".client_item .line_full_wrap");
+        let content = $(this).find(".client_item .client_content");
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: $(this),
+            start: "top bottom",
+            end: "top 70%",
+            toggleActions: "none play none reset"
+          }
+        });
+        tl.from(line, { scaleX: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" });
+        tl.from(content, { opacity: 0, yPercent: 20, stagger: 0.1, duration: 0.5, ease: "none" }, 0);
       });
-      tl.from(line, { scaleX: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" });
-      tl.from(content, { opacity: 0, yPercent: 20, stagger: 0.1, duration: 0.5, ease: "none" }, 0);
     });
   });
-
-  // 11. FAQ HOVER
+  </script>
+  <script>
+  // FAQ HOVER (from Webflow original)
   let mm = gsap.matchMedia();
   mm.add("(hover: hover) and (pointer: fine)", () => {
     document.querySelectorAll("[data-hover-item]").forEach(item => {
       const bg = item.querySelector("[data-hover-bg]");
       const content = item.querySelector("[data-hover-content]");
+
       item.addEventListener("mouseenter", e => {
         const bounds = item.getBoundingClientRect();
-        const origin = e.clientY > bounds.top + bounds.height / 2 ? "bottom" : "top";
+        const midY = bounds.top + bounds.height / 2;
+        const origin = e.clientY > midY ? "bottom" : "top";
         gsap.set(bg, { transformOrigin: origin });
         gsap.to(bg, { scaleY: 1, duration: 0.4, ease: "power2.out" });
         content.classList.add("is-active");
+        gsap.to(content, { paddingLeft: "0rem", paddingRight: "0rem", duration: 0.4, ease: "power2.out" });
       });
+
       item.addEventListener("mouseleave", e => {
         const bounds = item.getBoundingClientRect();
-        const origin = e.clientY > bounds.top + bounds.height / 2 ? "bottom" : "top";
+        const midY = bounds.top + bounds.height / 2;
+        const origin = e.clientY > midY ? "bottom" : "top";
         gsap.set(bg, { transformOrigin: origin });
         gsap.to(bg, { scaleY: 0, duration: 0.4, ease: "power2.in" });
         content.classList.remove("is-active");
+        gsap.to(content, { paddingLeft: "0rem", paddingRight: "0rem", duration: 0.4, ease: "power2.in" });
       });
     });
   });
-
-  // 12. CONTACT FORM
+  </script>
+  <script>
+  // CONTACT FORM — sends to FormSubmit.co
   const form = document.getElementById('email-form');
   if (form) {
     form.addEventListener('submit', function(e) {
@@ -955,7 +840,7 @@ Bright bedroom with a large bed, beige bedding, wooden ceiling beams, side table
       });
     });
   }
-</script>
+  </script>
 
 </body>
 </html>
