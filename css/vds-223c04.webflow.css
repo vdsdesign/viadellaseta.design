@@ -1,3 +1,7 @@
+picture {
+  display: contents;
+}
+
 @font-face {
   font-family: De Martega;
   src: url('../fonts/DE-MARTEGA-Regular.woff2') format("woff2");
