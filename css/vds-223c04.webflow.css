@@ -2899,22 +2899,3 @@ a:hover {
   font-style: normal;
   font-display: swap;
 }
-
-/* === GSAP-driven animations — no CSS keyframes needed === */
-.process-card,
-.hero-img-wrap,
-.italian-logos-wrap-in,
-.marquee-wrap,
-.smart-ornament,
-.need-img,
-._4professionals-img,
-.project-card {
-  will-change: transform;
-}
-
-/* Ensure italian logos container clips overflow */
-.italian-alllogos-wrap {
-  overflow: hidden;
-}
-
-/* overflow/position already set in main .section.form rule */
