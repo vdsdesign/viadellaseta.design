@@ -214,6 +214,7 @@ a:hover {
 .hero-head-wrap {
   color: var(--brown);
   position: relative;
+  margin-bottom: 3em;
 }
 
 .text-60 {
@@ -227,7 +228,7 @@ a:hover {
   text-align: right;
   width: 18em;
   position: absolute;
-  inset: auto 0% .2em auto;
+  inset: auto 0% -3em auto;
 }
 
 .hero-info-wrap {
@@ -2200,6 +2201,7 @@ a:hover {
     grid-row-gap: .5em;
     flex-flow: column;
     display: flex;
+    margin-bottom: 0;
   }
 
   .text-60 {
@@ -2209,6 +2211,7 @@ a:hover {
 
   .hero-head-2-wrap {
     position: static;
+    margin-top: 3em;
   }
 
   .hero-text-btn-wrap {
